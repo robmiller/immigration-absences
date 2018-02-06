@@ -49,6 +49,8 @@ foo</textarea>
       </li>
     </ul>
 
+    <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
+
     <h2>The verdict</h2>
     <template v-if="violating_years.length > 0">
       <div class="verdict bad">Not good</div>
@@ -65,8 +67,6 @@ foo</textarea>
 
       <p>From the information that you’ve given me, there don’t seem to be any twelve-month periods which contain more than 180 days’ absence.</p>
     </template>
-
-    <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
   </div>
 
   <script src="vendor/vue.min.js"></script>

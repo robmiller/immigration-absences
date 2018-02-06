@@ -37,7 +37,7 @@ var app = new Vue({
       this.calculate_total_absent_days();
     },
     calculate_total_absent_days: function() {
-      this.total_absent_days = 5;
+      this.total_absent_days = this.absences.map(a => a.days).reduce((a, c) => a + c);
     },
     calculate_periodic_absences: function() {
       var self = this;
