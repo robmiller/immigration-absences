@@ -45,12 +45,14 @@ var app = new Vue({
       this.total_absent_days = this.absences.map(a => a.days).reduce((a, c) => a + c);
     },
     calculate_periodic_absences: function() {
+
+      var self = this;
+      self.violating_years = [];
+
       if ( this.absences.length == 0 ) {
         return;
       }
 
-      var self = this;
-      self.violating_years = [];
       self.years.forEach(function(year) {
         year.total_absences = 0;
 

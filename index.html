@@ -39,15 +39,17 @@
 2013-06-20 - 2013-07-10</textarea>
     </p>
 
-    <p>From the above input, I've calculated the following absences without travel days:</p>
+    <template v-if="absences.length > 0">
+      <p>From the above input, I've calculated the following absences without travel days:</p>
 
-    <ul>
-      <li v-for="absence in absences">
-        {{ absence.start.format("YYYY-MM-DD") }} - {{ absence.end.format("YYYY-MM-DD") }} ({{ absence.days }} total days)
-      </li>
-    </ul>
+      <ul>
+        <li v-for="absence in absences">
+          {{ absence.start.format("YYYY-MM-DD") }} - {{ absence.end.format("YYYY-MM-DD") }} ({{ absence.days }} total days)
+        </li>
+      </ul>
 
-    <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
+      <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
+    </template>
 
     <h2>The verdict</h2>
     <template v-if="violating_years.length > 0">
@@ -69,6 +71,6 @@
 
   <script src="vendor/vue.min.js"></script>
   <script src="vendor/moment.min.js"></script>
-  <script src="app.js?v=201802061718"></script>
+  <script src="app.js?v=201802061722"></script>
 </body>
 </html>
