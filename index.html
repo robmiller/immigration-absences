@@ -45,7 +45,7 @@ foo</textarea>
 
     <ul>
       <li v-for="absence in absences">
-        {{ absence.start.format("YYYY-MM-DD") }} - {{ absence.end.format("YYYY-MM-DD") }}
+        {{ absence.start.format("YYYY-MM-DD") }} - {{ absence.end.format("YYYY-MM-DD") }} ({{ absence.days }} total days)
       </li>
     </ul>
 

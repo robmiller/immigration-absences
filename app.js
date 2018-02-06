@@ -69,6 +69,7 @@ var app = new Vue({
         .filter(l => l.match(/^\d{4}-\d{2}-\d{2}\s+(-|–)\s+\d{4}-\d{2}-\d{2}$/))
         .map(a => a.split(/\s+(?:-|–)\s+/))
         .map(a => { return { start: moment(a[0]).add(1, "day"), end: moment(a[1]).subtract(1, "day") }; });
+      this.absences.forEach(a => a.days = Math.ceil((moment(a.end).add(23, "hours") - a.start) / 86400 / 1000));
 
       this.calculate_periodic_absences();
       this.calculate_total_absent_days();
