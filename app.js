@@ -48,10 +48,10 @@ var app = new Vue({
         var absences = self.absences.map(function(absence) {
           if ( self.overlaps(absence, year) ) {
             // Clamp the absence within this period
-            var start = Math.max(moment(year.start).format("X"), moment(absence.start).format("X"));
-            var end   = Math.min(moment(year.end).format("X"), moment(absence.end).format("X"));
+            var start = moment.max(moment(year.start), moment(absence.start));
+            var end   = moment.min(moment(year.end), moment(absence.end));
             // Calculate the number of days
-            return Math.ceil((moment(end, "X").add(23, "hours").format("X") - start) / 86400);
+            return Math.ceil((moment(end).add(23, "hours") - start) / 86400 / 1000);
           } else {
             return 0;
           }
