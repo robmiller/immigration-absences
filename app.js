@@ -37,9 +37,18 @@ var app = new Vue({
       this.calculate_total_absent_days();
     },
     calculate_total_absent_days: function() {
+      if ( this.absences.length == 0 ) {
+        this.total_absent_days = 0;
+        return;
+      }
+
       this.total_absent_days = this.absences.map(a => a.days).reduce((a, c) => a + c);
     },
     calculate_periodic_absences: function() {
+      if ( this.absences.length == 0 ) {
+        return;
+      }
+
       var self = this;
       self.violating_years = [];
       self.years.forEach(function(year) {
