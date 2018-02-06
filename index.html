@@ -30,13 +30,18 @@
       Enter each period of continuous absence on its own line, in the format:<br>
       <code>YYYY-MM-DD - YYYY-MM-DD</code>
     </p>
+    <p class="gloss">
+      Enter the dates including travel days; these will be automatically subtracted for you.
+    </p>
 
     <p>
-      <textarea class="absences" id="absences" v-on:input="parse_absences">2013-02-06 - 2013-02-08
+      <textarea class="absences" id="absences" v-on:input="parse_absences">2013-02-09 - 2013-02-12
 2013-06-20 - 2013-07-10
 2014-01-01 - 2014-09-01
 foo</textarea>
     </p>
+
+    <p>From the above input, I've calculated the following absences without travel days:</p>
 
     <ul>
       <li v-for="absence in absences">

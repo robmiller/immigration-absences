@@ -68,10 +68,10 @@ var app = new Vue({
       this.absences = input.split(/\n|\r/)
         .filter(l => l.match(/^\d{4}-\d{2}-\d{2}\s+(-|–)\s+\d{4}-\d{2}-\d{2}$/))
         .map(a => a.split(/\s+(?:-|–)\s+/))
-        .map(a => { return { start: moment(a[0]), end: moment(a[1]) }; });
+        .map(a => { return { start: moment(a[0]).add(1, "day"), end: moment(a[1]).subtract(1, "day") }; });
 
-        this.calculate_periodic_absences();
-        this.calculate_total_absent_days();
+      this.calculate_periodic_absences();
+      this.calculate_total_absent_days();
     },
     overlaps: function(period_one, period_two) {
       if ( period_one.start.isBetween(period_two.start, period_two.end, null, "[]") ) {
