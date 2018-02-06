@@ -44,9 +44,11 @@ foo</textarea>
       </li>
     </ul>
 
-    <h2>Twelve-month periods</h2>
+    <h2>The verdict</h2>
     <template v-if="violating_years.length > 0">
-      <p>From the information that you’ve given me, the following twelve-month periods appear to contain more than 180 days’ absence:</p>
+      <div class="verdict bad">Not good</div>
+
+      <p>From the information that you’ve given me, the following {{ violating_years.length }} twelve-month periods appear to contain more than 180 days’ absence:</p>
       <ul id="years">
         <li v-for="year in violating_years">
           {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }} ({{ year.total_absences }} total absences)
@@ -54,6 +56,8 @@ foo</textarea>
       </ul>
     </template>
     <template v-else>
+      <div class="verdict good">Good</div>
+
       <p>From the information that you’ve given me, there don’t seem to be any twelve-month periods which contain more than 180 days’ absence.</p>
     </template>
 

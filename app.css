@@ -33,3 +33,20 @@ textarea.absences {
 	width:100%;
 	height:10em;
 }
+
+.verdict {
+	text-align:center;
+	font-size:21px;
+	font-style:italic;
+	padding:0.5em 0;
+}
+
+.verdict.bad {
+	background:rgba(244, 67, 54, 0.33);
+	color:#f44336;
+}
+
+.verdict.good {
+	background:rgba(76, 175, 80, 0.33);
+	color:#4caf50;
+}
