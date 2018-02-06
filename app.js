@@ -2,13 +2,17 @@ var app = new Vue({
   el: "#app",
   data: {
     period: {
-      start: "2013-02-06",
-      end:   "2018-02-06",
     },
     years: [],
     violating_years: [],
     absences: [],
     total_absent_days: 0
+  },
+  mounted: function() {
+    this.period.start = moment().subtract(5, 'y').format("YYYY-MM-DD");
+
+    this.parse_absences();
+    this.calculate_years();
   },
   methods: {
     calculate_years: function() {
@@ -99,6 +103,3 @@ var app = new Vue({
     },
   }
 });
-
-app.parse_absences();
-app.calculate_years();
