@@ -19,16 +19,15 @@ var app = new Vue({
 
       this.years = [];
 
-      var next_year = moment(period_start).add(1, 'y');
-      this.years.push({ start: moment(this.period.start), end: next_year });
+      var start = moment(this.period.start);
+      this.years.push({ start: moment(start), end: moment(start).add(1, 'y').subtract(1, 'd') });
 
-      for ( var i = 0; i < 4; i++ ) {
-        var year_after = moment(next_year).add(1, 'y');
-        this.years.push({ start: next_year, end: year_after});
-        next_year = moment(year_after);
+      for ( var i = 0; i < 60; i++ ) {
+        start.add(1, 'month');
+        this.years.push({ start: moment(start), end: moment(start).add(1, 'y').subtract(1, 'd')});
       }
 
-      this.period.end = moment(period_start).add(5, 'y').format("YYYY-MM-DD");
+      this.period.end = moment(period_start).add(5, 'y').subtract(1, 'd').format("YYYY-MM-DD");
 
       this.calculate_total_absent_days();
     },
