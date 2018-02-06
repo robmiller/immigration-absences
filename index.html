@@ -3,11 +3,31 @@
 <head>
   <meta charset="utf-8">
   <title>Absence calculator</title>
-
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script src="app.js"></script>
 </head>
 <body>
 
+  <div id="app">
+    <p>Period start date: <input type="text" id="period_start" v-model="period.start" v-on:input="calculate_years"></p>
+    <p>Period end date: {{ period.end }}</p>
+
+    <p>One-year periods:
+    <ul id="years">
+      <li v-for="year in years">
+        {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }}
+      </li>
+    </ul>
+
+    <ul id="absences">
+      <li v-for="absence in absences">
+        {{ absence.start }} - {{ absence.end }}
+      </li>
+    </ul>
+
+    <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="vendor/moment.min.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
