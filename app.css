@@ -5,6 +5,16 @@ body {
 	line-height:1.2;
 }
 
+.container {
+	width:30em;
+	margin:0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-weight:700;
+	font-style:italic;
+}
+
 input:invalid {
 	border:1px solid red;
 	background:rgba(244, 67, 54, 0.33);
