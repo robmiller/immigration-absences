@@ -16,7 +16,7 @@
       <ol>
         <li>Enter the start date of the five-year period for which you want to perform calculations. The end date will be calculated for you</li>
         <li>Enter the dates of all absences from the UK within that five-year period</li>
-        <li>Any 12-month periods that have more than the allowed 180 days’ absences in them will be highlighted for you in red</li>
+        <li>Any 12-month periods that have more than the allowed 180 days’ absences in them will be highlighted for you</li>
       </ol>
     </div>
 
@@ -27,29 +27,35 @@
     <h2>Absences</h2>
 
     <p class="gloss">
-      Enter each continuous absence on its own line, in the format:<br>
+      Enter each period of continuous absence on its own line, in the format:<br>
       <code>YYYY-MM-DD - YYYY-MM-DD</code>
     </p>
 
     <p>
       <textarea class="absences" id="absences" v-on:input="parse_absences">2013-02-06 - 2013-02-08
 2013-06-20 - 2013-07-10
+2014-01-01 - 2014-09-01
 foo</textarea>
     </p>
 
     <ul>
       <li v-for="absence in absences">
-        {{ absence.start }} - {{ absence.end }}
+        {{ absence.start.format("YYYY-MM-DD") }} - {{ absence.end.format("YYYY-MM-DD") }}
       </li>
     </ul>
 
     <h2>Twelve-month periods</h2>
-    <p>The given five-year period contains the following twelve-month periods, as defined by the immigration rules:</p>
-    <ul id="years">
-      <li v-for="year in years">
-        {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }}
-      </li>
-    </ul>
+    <template v-if="violating_years.length > 0">
+      <p>From the information that you’ve given me, the following twelve-month periods appear to contain more than 180 days’ absence:</p>
+      <ul id="years">
+        <li v-for="year in violating_years">
+          {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }} ({{ year.total_absences }} total absences)
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <p>From the information that you’ve given me, there don’t seem to be any twelve-month periods which contain more than 180 days’ absence.</p>
+    </template>
 
     <p class="total_absent_days">Total absent days: <span>{{ total_absent_days }}</span></p>
   </div>
