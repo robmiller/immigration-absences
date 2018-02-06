@@ -36,3 +36,5 @@ var app = new Vue({
     }
   }
 });
+
+app.calculate_years();
