@@ -20,11 +20,10 @@ var app = new Vue({
       this.years = [];
 
       var start = moment(this.period.start);
-      this.years.push({ start: moment(start), end: moment(start).add(1, 'y').subtract(1, 'd') });
 
-      for ( var i = 0; i < 60; i++ ) {
-        start.add(1, 'month');
+      for ( var i = 0; i <= 48; i++ ) {
         this.years.push({ start: moment(start), end: moment(start).add(1, 'y').subtract(1, 'd')});
+        start.add(1, 'month');
       }
 
       this.period.end = moment(period_start).add(5, 'y').subtract(1, 'd').format("YYYY-MM-DD");
