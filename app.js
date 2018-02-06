@@ -18,6 +18,7 @@ var app = new Vue({
 
       period_start = moment(this.period.start);
       period_end   = moment(period_start).add(5, 'y').subtract(1, 'd')
+      this.period.end = period_end.format("YYYY-MM-DD")
 
       this.years = [];
 
