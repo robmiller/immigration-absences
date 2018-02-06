@@ -16,17 +16,21 @@ var app = new Vue({
       }
 
       period_start = moment(this.period.start);
+      period_end   = moment(period_start).add(5, 'y').subtract(1, 'd')
 
       this.years = [];
 
       var start = moment(this.period.start);
 
-      for ( var i = 0; i <= 48; i++ ) {
-        this.years.push({ start: moment(start), end: moment(start).add(1, 'y').subtract(1, 'd')});
-        start.add(1, 'month');
-      }
+      while ( true ) {
+        var end = moment(start).add(1, 'y').subtract(1, 'd');
+        this.years.push({ start: moment(start), end: end });
+        start.add(1, 'd');
 
-      this.period.end = moment(period_start).add(5, 'y').subtract(1, 'd').format("YYYY-MM-DD");
+        if ( end >= period_end ) {
+          break;
+        }
+      }
 
       this.calculate_periodic_absences();
       this.calculate_total_absent_days();
