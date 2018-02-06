@@ -3,11 +3,14 @@
 <head>
   <meta charset="utf-8">
   <title>Absence calculator</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Cardo:400,400i,700" rel="stylesheet">
+  <link href="app.css" rel="stylesheet">
 </head>
 <body>
 
   <div id="app">
-    <p>Period start date: <input type="text" id="period_start" v-model="period.start" v-on:input="calculate_years"></p>
+    <p>Period start date: <input type="text" id="period_start" v-model="period.start" v-on:input="calculate_years" require pattern="^\d{4}-\d{2}-\d{2}$"></p>
     <p>Period end date: {{ period.end }}</p>
 
     <p>One-year periods:

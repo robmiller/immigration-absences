@@ -1,0 +1,11 @@
+body {
+	font-family:'Cardo', Baskerville, serif;
+	font-weight:400;
+	font-size:18px;
+	line-height:1.2;
+}
+
+input:invalid {
+	border:1px solid red;
+	background:rgba(244, 67, 54, 0.33);
+}
