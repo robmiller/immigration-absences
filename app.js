@@ -47,7 +47,15 @@ var app = new Vue({
       // period
       // Move onto the next period
     },
+    parse_absences: function() {
+      var input = document.getElementById("absences").value;
+      this.absences = input.split(/\n|\r/)
+        .filter(l => l.match(/^\d{4}-\d{2}-\d{2}\s+(-|–)\s+\d{4}-\d{2}-\d{2}$/))
+        .map(a => a.split(/\s+(?:-|–)\s+/))
+        .map(a => { return { start: a[0], end: a[1] }; });
+    },
   }
 });
 
 app.calculate_years();
+app.parse_absences();

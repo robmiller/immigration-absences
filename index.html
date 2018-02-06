@@ -24,14 +24,20 @@
     <p>Period start date: <input type="text" id="period_start" v-model="period.start" v-on:input="calculate_years" require pattern="^\d{4}-\d{2}-\d{2}$"></p>
     <p>Period end date: {{ period.end }}</p>
 
-    <p>One-year periods:
-    <ul id="years">
-      <li v-for="year in years">
-        {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }}
-      </li>
-    </ul>
+    <h2>Absences</h2>
 
-    <ul id="absences">
+    <p class="gloss">
+      Enter each continuous absence on its own line, in the format:<br>
+      <code>YYYY-MM-DD - YYYY-MM-DD</code>
+    </p>
+
+    <p>
+      <textarea class="absences" id="absences" v-on:input="parse_absences">2013-02-06 - 2013-02-08
+2013-06-20 - 2013-07-10
+foo</textarea>
+    </p>
+
+    <ul>
       <li v-for="absence in absences">
         {{ absence.start }} - {{ absence.end }}
       </li>
