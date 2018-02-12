@@ -1,8 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    period: {
-    },
+    period: {},
     years: [],
     violating_years: [],
     absences: [],
@@ -41,6 +40,7 @@ var app = new Vue({
       this.calculate_periodic_absences();
       this.calculate_total_absent_days();
     },
+
     calculate_total_absent_days: function() {
       if ( this.absences.length == 0 ) {
         this.total_absent_days = 0;
@@ -49,8 +49,8 @@ var app = new Vue({
 
       this.total_absent_days = this.absences.map(a => a.days).reduce((a, c) => a + c);
     },
-    calculate_periodic_absences: function() {
 
+    calculate_periodic_absences: function() {
       var self = this;
       self.violating_years = [];
 
@@ -79,6 +79,7 @@ var app = new Vue({
         }
       });
     },
+
     parse_absences: function() {
       var input = document.getElementById("absences").value;
       this.absences = input.split(/\n|\r/)
@@ -90,6 +91,7 @@ var app = new Vue({
       this.calculate_periodic_absences();
       this.calculate_total_absent_days();
     },
+
     overlaps: function(period_one, period_two) {
       if ( period_one.start.isBetween(period_two.start, period_two.end, null, "[]") ) {
         return true;
