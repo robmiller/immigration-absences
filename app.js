@@ -5,6 +5,7 @@ var app = new Vue({
     years: [],
     violating_years: [],
     absences: [],
+    days_allowed: 180,
     total_absent_days: 0
   },
   mounted: function() {
@@ -74,7 +75,7 @@ var app = new Vue({
         });
 
         year.total_absences = absences.reduce((a, c) => a + c);
-        if ( year.total_absences > 180 ) {
+        if ( year.total_absences > self.days_allowed ) {
           self.violating_years.push(year);
         }
       });

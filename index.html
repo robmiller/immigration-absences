@@ -18,13 +18,15 @@
       <ol>
         <li>Enter the start date of the five-year period for which you want to perform calculations. The end date will be calculated for you</li>
         <li>Enter the dates of all absences from the UK within that five-year period</li>
-        <li>Any 12-month periods that have more than the allowed 180 days’ absences in them will be highlighted for you</li>
+        <li>Any 12-month periods that have more than the allowed {{ days_allowed }} days’ absences in them will be highlighted for you</li>
       </ol>
     </div>
 
     <h2>Five-year period</h2>
     <p>Period start date: <input type="text" id="period_start" v-model="period.start" v-on:input="calculate_years" require pattern="^\d{4}-\d{2}-\d{2}$"></p>
     <p>Period end date: {{ period.end }}</p>
+
+    <p>Maximum consecutive days' absence allowed: <input type="number" id="days_allowed" v-model="days_allowed"></p>
 
     <h2>Absences</h2>
 
@@ -57,7 +59,7 @@
     <template v-if="violating_years.length > 0">
       <div class="verdict bad">Not good</div>
 
-      <p>From the information that you’ve given me, the following {{ violating_years.length }} twelve-month periods appear to contain more than 180 days’ absence:</p>
+	  <p>From the information that you’ve given me, the following {{ violating_years.length }} twelve-month periods appear to contain more than {{ days_allowed }} days’ absence:</p>
       <ul id="years">
         <li v-for="year in violating_years">
           {{ year.start.format("YYYY-MM-DD") }} - {{ year.end.format("YYYY-MM-DD") }} ({{ year.total_absences }} total absences)
@@ -67,7 +69,7 @@
     <template v-else>
       <div class="verdict good">Good</div>
 
-      <p>From the information that you’ve given me, there don’t seem to be any twelve-month periods which contain more than 180 days’ absence.</p>
+	  <p>From the information that you’ve given me, there don’t seem to be any twelve-month periods which contain more than {{ days_allowed }} days’ absence.</p>
     </template>
   </div>
 
